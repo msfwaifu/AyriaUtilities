@@ -18,6 +18,7 @@ using namespace AYRIA;
 #include "Crypto/bcrypt.h"
 #include "Files/CSVManager.h"
 #include "Files/Filesystem.h"
+#include "Binary/IATReader.h"
 #include "Binary/Memprotect.h"
 #include "Strings/Debugstring.h"
 #include "Strings/Variadicstring.h"

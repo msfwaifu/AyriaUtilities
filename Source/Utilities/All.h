@@ -13,6 +13,7 @@ using namespace AYRIA;
 #endif
 
 #include "Crypto/FNV1.h"
+#include "Crypto/SMS3.h"
 #include "Files/Filesystem.h"
 #include "Strings/Debugstring.h"
 #include "Strings/Variadicstring.h"

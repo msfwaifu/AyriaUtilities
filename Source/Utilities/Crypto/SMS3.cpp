@@ -9,7 +9,7 @@
 
 #include "SMS3.h"
 #include <memory>
-#include "..\..\..\Thirdparty\goldboar\sm3.h"
+#include "../../../Thirdparty\goldboar\sm3.h"
 
 std::string AYRIA::SMS3::Hash(std::string Input)
 {

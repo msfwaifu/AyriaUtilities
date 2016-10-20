@@ -15,6 +15,7 @@ using namespace AYRIA;
 #include "Crypto/FNV1.h"
 #include "Crypto/SMS3.h"
 #include "Crypto/SMS4.h"
+#include "Binary/Hooks.h"
 #include "Crypto/bcrypt.h"
 #include "Files/CSVManager.h"
 #include "Files/Filesystem.h"

@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/AyriaUtilities.vcxproj.filters
+/AyriaUtilities.vcxproj
+/AyriaUtilities.VC.VC.opendb
+/AyriaUtilities.VC.db
+/AyriaUtilities.sln
+/.vs/AyriaUtilities/v14/.suo
+/AyriaUtilities.vcxproj.user
+/AyriaUtilities.licenseheader

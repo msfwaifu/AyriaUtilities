@@ -8,10 +8,6 @@
 
 #pragma once
 
-#ifndef KEEP_AYRIA_NAMESPACE
-using namespace AYRIA;
-#endif
-
 #include "Crypto/FNV1.h"
 #include "Crypto/SMS3.h"
 #include "Crypto/SMS4.h"
@@ -23,3 +19,7 @@ using namespace AYRIA;
 #include "Binary/Memprotect.h"
 #include "Strings/Debugstring.h"
 #include "Strings/Variadicstring.h"
+
+#ifndef KEEP_AYRIA_NAMESPACE
+using namespace AYRIA;
+#endif

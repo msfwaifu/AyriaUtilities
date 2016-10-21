@@ -4,7 +4,7 @@
     Started: 2016-10-20
     Notes:
         A simple system to log messages to disk and stdout.
-        The logfile is stored in LOGFILEDIR\\MODULENAME.log.
+        The logfile is stored in LOGFILEDIR/MODULENAME.log.
 */
 
 #pragma once

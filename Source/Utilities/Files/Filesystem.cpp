@@ -100,7 +100,7 @@ bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenam
     DIR *Filehandle;
 
     // Append trailing slash, asterisk and extension.
-    if (Searchpath.back() != '\\') Searchpath.append("\\");
+    if (Searchpath.back() != '/') Searchpath.append("/");
     Path = Searchpath;
     Searchpath.append("*");
     if (Extension) Searchpath.append(".");
@@ -136,7 +136,7 @@ bool AYRIA::File::Listrecursive(std::string Searchpath, std::vector<std::string>
     DIR *Filehandle;
 
     // Append trailing slash, asterisk and extension.
-    if (Searchpath.back() != '\\') Searchpath.append("\\");
+    if (Searchpath.back() != '/') Searchpath.append("/");
     Path = Searchpath;
     Searchpath.append("*");
     if (Extension) Searchpath.append(".");
@@ -262,7 +262,7 @@ bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenam
     HANDLE Filehandle;
 
     // Append trailing slash, asterisk and extension.
-    if (Searchpath.back() != '\\') Searchpath.append("\\");
+    if (Searchpath.back() != '/') Searchpath.append("/");
     Searchpath.append("*");
     if (Extension) Searchpath.append(".");
     if (Extension) Searchpath.append(Extension);
@@ -295,7 +295,7 @@ bool AYRIA::File::Listrecursive(std::string Searchpath, std::vector<std::string>
     std::string Path;
 
     // Append trailing slash, asterisk and extension.
-    if (Searchpath.back() != '\\') Searchpath.append("\\");
+    if (Searchpath.back() != '/') Searchpath.append("/");
     Path = Searchpath;
     Searchpath.append("*");
     if (Extension) Searchpath.append(".");

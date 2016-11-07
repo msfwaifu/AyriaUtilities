@@ -19,7 +19,7 @@
 
 namespace AYRIA
 {
-    namespace Debug
+    namespace DEBUG
     {
         void DeleteLogfile();
         void AppendLogfileTimestamp(const char *Message);

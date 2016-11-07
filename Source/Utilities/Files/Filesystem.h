@@ -13,7 +13,7 @@
 
 namespace AYRIA
 {
-    namespace File
+    namespace FILE
     {
         bool Write(const char *Filepath, const void *Databuffer, const size_t Datalength, const bool Append);
         bool Write(const char *Filepath, const std::string &Databuffer, const bool Append);

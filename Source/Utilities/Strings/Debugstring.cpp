@@ -16,11 +16,11 @@
 constexpr const char *Filepath = LOGFILEDIR MODULENAME ".log";
 static std::mutex Guard;
 
-void AYRIA::Debug::DeleteLogfile()
+void AYRIA::DEBUG::DeleteLogfile()
 {
     std::remove(Filepath);
 }
-void AYRIA::Debug::AppendLogfileTimestamp(const char *Message)
+void AYRIA::DEBUG::AppendLogfileTimestamp(const char *Message)
 {
     std::time_t Now = time(NULL);
     char Buffer [80];
@@ -28,7 +28,7 @@ void AYRIA::Debug::AppendLogfileTimestamp(const char *Message)
     strftime (Buffer, 80, "%H:%M:%S", std::localtime(&Now));
     AppendLogfile(Message, Buffer);
 }
-void AYRIA::Debug::AppendLogfile(const char *Message, const char *Prefix)
+void AYRIA::DEBUG::AppendLogfile(const char *Message, const char *Prefix)
 {
     // Prevent multiple writes to the log.
     Guard.lock();

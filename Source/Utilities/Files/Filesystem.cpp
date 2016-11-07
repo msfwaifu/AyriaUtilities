@@ -20,7 +20,7 @@
 #define IOSMODE(x) x
 #endif
 
-bool AYRIA::File::Write(const char *Filepath, const void *Databuffer, const size_t Datalength, const bool Append)
+bool AYRIA::FILE::Write(const char *Filepath, const void *Databuffer, const size_t Datalength, const bool Append)
 {
     bool Result;
     std::ofstream Filewriter(Filepath, IOSMODE(std::ios::binary | (Append ? std::ios::app : 0)));
@@ -28,11 +28,11 @@ bool AYRIA::File::Write(const char *Filepath, const void *Databuffer, const size
     Filewriter.close();
     return Result;
 }
-bool AYRIA::File::Write(const char *Filepath, const std::string &Databuffer, const bool Append)
+bool AYRIA::FILE::Write(const char *Filepath, const std::string &Databuffer, const bool Append)
 {
     return Write(Filepath, Databuffer.data(), Databuffer.size(), Append);
 }
-bool AYRIA::File::Read(const char *Filepath, void *Databuffer, size_t *Datalength)
+bool AYRIA::FILE::Read(const char *Filepath, void *Databuffer, size_t *Datalength)
 {
     // Sanity checking to avoid time-wastage.
     if (!Exists(Filepath)) return false;
@@ -49,7 +49,7 @@ bool AYRIA::File::Read(const char *Filepath, void *Databuffer, size_t *Datalengt
     Filereader.close();
     return Result;
 }
-bool AYRIA::File::Read(const char *Filepath, std::string *Databuffer)
+bool AYRIA::FILE::Read(const char *Filepath, std::string *Databuffer)
 {
     // Sanity checking to avoid time-wastage.
     if (!Exists(Filepath)) return false;
@@ -72,13 +72,13 @@ bool AYRIA::File::Read(const char *Filepath, std::string *Databuffer)
 #include <sys/stat.h>
 #include <dirent.h>
 
-uint32_t AYRIA::File::Modified(const char *Filepath)
+uint32_t AYRIA::FILE::Modified(const char *Filepath)
 {
     struct stat Attribute;
     stat(Filepath, &Attribute);
     return uint32_t(Attribute.st_mtime);
 }
-bool AYRIA::File::Createdir(const char *Path)
+bool AYRIA::FILE::Createdir(const char *Path)
 {
     std::string Filepath(Path);
     auto Position = Filepath.find_first_of("/");
@@ -92,7 +92,7 @@ bool AYRIA::File::Createdir(const char *Path)
 
     return Result;
 }
-bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
+bool AYRIA::FILE::List(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
 {
     struct stat Fileinfo;
     dirent *Filedata;
@@ -126,7 +126,7 @@ bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenam
 
     return !!Filenames->size();
 }
-bool AYRIA::File::Listrecursive(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
+bool AYRIA::FILE::Listrecursive(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
 {
     std::vector<std::thread> Workers;
     static std::mutex Guard;
@@ -181,7 +181,7 @@ bool AYRIA::File::Listrecursive(std::string Searchpath, std::vector<std::string>
 #if _MSC_VER >= 1900
 #include <experimental\filesystem>
 
-uint32_t AYRIA::File::Modified(const char *Filepath)
+uint32_t AYRIA::FILE::Modified(const char *Filepath)
 {
     // Sanity checking to avoid time-wastage.
     if (!Exists(Filepath)) return 0;
@@ -189,21 +189,21 @@ uint32_t AYRIA::File::Modified(const char *Filepath)
     auto Filetime = std::experimental::filesystem::last_write_time(Filepath);
     return uint32_t(decltype(Filetime)::clock::to_time_t(Filetime));
 }
-size_t AYRIA::File::Size(const char *Filepath)
+size_t AYRIA::FILE::Size(const char *Filepath)
 {
     return size_t(std::experimental::filesystem::file_size(Filepath));
 }
-bool AYRIA::File::Exists(const char *Filepath)
+bool AYRIA::FILE::Exists(const char *Filepath)
 {
     return std::experimental::filesystem::exists(Filepath);
 }
-bool AYRIA::File::Createdir(const char *Path)
+bool AYRIA::FILE::Createdir(const char *Path)
 {
     return std::experimental::filesystem::create_directories(Path);
 }
 #else
 
-uint32_t AYRIA::File::Modified(const char *Filepath)
+uint32_t AYRIA::FILE::Modified(const char *Filepath)
 {
     HANDLE Filehandle = CreateFileA(Filepath, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
     FILETIME ModifiedTime;
@@ -213,7 +213,7 @@ uint32_t AYRIA::File::Modified(const char *Filepath)
 
     return uint32_t((*(uint64_t *)&ModifiedTime / 10000000 - 11644473600LL));
 }
-size_t AYRIA::File::Size(const char *Filepath)
+size_t AYRIA::FILE::Size(const char *Filepath)
 {
     std::ifstream Filehandle(Filepath, std::ios::binary);
     std::streamsize Size = 0;
@@ -225,7 +225,7 @@ size_t AYRIA::File::Size(const char *Filepath)
     if (Size == -1) return 0;
     else return size_t(Size);
 }
-bool AYRIA::File::Exists(const char *Filepath)
+bool AYRIA::FILE::Exists(const char *Filepath)
 {
     std::ifstream Filehandle(Filepath, std::ios::binary);
     std::streamsize Size = 0;
@@ -236,7 +236,7 @@ bool AYRIA::File::Exists(const char *Filepath)
 
     return Size != -1;
 }
-bool AYRIA::File::Createdir(const char *Path)
+bool AYRIA::FILE::Createdir(const char *Path)
 {
     std::string Filepath(Path);
     auto Position = Filepath.find_first_of("/");
@@ -252,11 +252,11 @@ bool AYRIA::File::Createdir(const char *Path)
 }
 #endif
 
-bool AYRIA::File::Touch(const char *Path)
+bool AYRIA::FILE::Touch(const char *Path)
 {
     return Write(Path, "", 0, true);
 }
-bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
+bool AYRIA::FILE::List(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
 {
     WIN32_FIND_DATAA Filedata;
     HANDLE Filehandle;
@@ -286,7 +286,7 @@ bool AYRIA::File::List(std::string Searchpath, std::vector<std::string> *Filenam
 
     return !!Filenames->size();
 }
-bool AYRIA::File::Listrecursive(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
+bool AYRIA::FILE::Listrecursive(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension)
 {
     static std::mutex Threadguard;
     std::vector<std::thread> Workers;

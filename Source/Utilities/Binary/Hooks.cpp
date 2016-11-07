@@ -6,12 +6,13 @@
         Two types of common hooks.
 */
 
-#include "Hooks.h"
+#include "HOOKs.h"
 #include "Memprotect.h"
+//#include <STDInclude.h> // Uncomment to define ENVIRONMENT64
 
 // Create and remove a hook at [location].
 #ifdef ENVIRONMENT64
-bool AYRIA::Hook::Stomphook::Installhook(void *Location, void *Target)
+bool AYRIA::HOOK::Stomphook::Installhook(void *Location, void *Target)
 {
     s_Location = (void *)Location;
     s_Target = (void *)Target;
@@ -33,7 +34,7 @@ bool AYRIA::Hook::Stomphook::Installhook(void *Location, void *Target)
 
     return true;
 }
-bool AYRIA::Hook::Stomphook::Removehook()
+bool AYRIA::HOOK::Stomphook::Removehook()
 {
     auto Protection = AYRIA::Memprotect::Unprotectrange(s_Location, 12);
     {
@@ -45,7 +46,7 @@ bool AYRIA::Hook::Stomphook::Removehook()
     return true;
 }
 #else
-bool AYRIA::Hook::Stomphook::Installhook(void *Location, void *Target)
+bool AYRIA::HOOK::Stomphook::Installhook(void *Location, void *Target)
 {
     s_Location = (void *)Location;
     s_Target = (void *)Target;
@@ -62,7 +63,7 @@ bool AYRIA::Hook::Stomphook::Installhook(void *Location, void *Target)
 
     return true;
 }
-bool AYRIA::Hook::Stomphook::Removehook()
+bool AYRIA::HOOK::Stomphook::Removehook()
 {
     auto Protection = AYRIA::Memprotect::Unprotectrange(s_Location, 5);
     {
@@ -77,7 +78,7 @@ bool AYRIA::Hook::Stomphook::Removehook()
 
 // Create and remove a hook at [location].
 #ifdef ENVIRONMENT64
-bool AYRIA::Hook::Callhook::Installhook(void *Location, void *Target)
+bool AYRIA::HOOK::Callhook::Installhook(void *Location, void *Target)
 {
     s_Location = (void *)Location;
     s_Target = (void *)Target;
@@ -99,7 +100,7 @@ bool AYRIA::Hook::Callhook::Installhook(void *Location, void *Target)
 
     return true;
 }
-bool AYRIA::Hook::Callhook::Removehook()
+bool AYRIA::HOOK::Callhook::Removehook()
 {
     auto Protection = AYRIA::Memprotect::Unprotectrange(s_Location, 12);
     {
@@ -111,7 +112,7 @@ bool AYRIA::Hook::Callhook::Removehook()
     return true;
 }
 #else
-bool AYRIA::Hook::Callhook::Installhook(void *Location, void *Target)
+bool AYRIA::HOOK::Callhook::Installhook(void *Location, void *Target)
 {
     s_Location = (void *)Location;
     s_Target = (void *)Target;
@@ -128,7 +129,7 @@ bool AYRIA::Hook::Callhook::Installhook(void *Location, void *Target)
 
     return true;
 }
-bool AYRIA::Hook::Callhook::Removehook()
+bool AYRIA::HOOK::Callhook::Removehook()
 {
     auto Protection = AYRIA::Memprotect::Unprotectrange(s_Location, 5);
     {

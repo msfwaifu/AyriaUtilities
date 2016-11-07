@@ -12,7 +12,7 @@
 
 namespace AYRIA
 {
-    namespace Hook
+    namespace HOOK
     {
         #define EXTENDEDHOOKDECL(Basehook)                              \
         template <typename Functionsignature, typename ...Arguments>    \

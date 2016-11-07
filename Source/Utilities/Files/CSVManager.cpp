@@ -87,7 +87,7 @@ std::vector<std::vector<std::string>> AYRIA::CSV::Readfile(std::string Filepath)
 }
 bool AYRIA::CSV::Writefile(std::vector<std::vector<std::string>> Buffer, std::string Filepath)
 {
-    FILE *Filehandle{ nullptr };
+    std::FILE *Filehandle{ nullptr };
 
     // Check that we have anything to write.
     if (Buffer.size() == 0)

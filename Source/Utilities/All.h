@@ -9,3 +9,5 @@
 #pragma once
 
 #include "Hash/FNV1.h"
+#include "Strings/Log.h"
+#include "Strings/Variadicstring.h"
